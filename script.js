@@ -73,15 +73,34 @@ function renderProducts(filteredProducts = products) {
   });
 }
 
+// Sample product data
+const products = [
+  { id: 1, name: "Red Graphic Tee", price: 19.99, image: "https://via.placeholder.com/200x250?text=Red+Graphic+Tee" },
+  { id: 2, name: "Blue Striped Tee", price: 24.99, image: "https://via.placeholder.com/200x250?text=Blue+Striped+Tee" },
+  { id: 3, name: "Black Plain Tee", price: 14.99, image: "https://via.placeholder.com/200x250?text=Black+Plain+Tee" },
+];
+
 // Function to add product to cart
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
   if (product) {
-    
-    const cartCount = document.getElementById("cart-count");
-    cartCount.textContent = parseInt(cartCount.textContent) + 1;
+    let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    cartItems.push(product); // Add the product to the cart
+    localStorage.setItem("cart", JSON.stringify(cartItems)); // Save to localStorage
+    alert(`${product.name} added to cart!`);
+    updateCartCount(); // Update the cart count in the header
   }
 }
+
+// Function to update the cart count in the header
+function updateCartCount() {
+  const cartCount = document.getElementById("cart-count");
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  cartCount.textContent = cartItems.length;
+}
+
+// Initial render
+updateCartCount();
 
 // Search functionality
 function filterProducts() {
