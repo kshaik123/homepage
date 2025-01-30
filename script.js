@@ -77,7 +77,7 @@ function renderProducts(filteredProducts = products) {
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
   if (product) {
-    alert(`${product.name} added to cart!`);
+    //alert(`${product.name} added to cart!`);
     const cartCount = document.getElementById("cart-count");
     cartCount.textContent = parseInt(cartCount.textContent) + 1;
   }
