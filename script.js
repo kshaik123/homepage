@@ -93,6 +93,9 @@ renderProducts();
 // Check if the user is logged in (dummy check for now)
 let isLoggedIn = false; // Replace with actual login status from backend
 
+// Check login status from localStorage
+let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
 // Update the navigation menu based on login status
 function updateAuthLinks() {
   const loginLink = document.getElementById("login-link");
@@ -110,10 +113,14 @@ function updateAuthLinks() {
 // Logout functionality
 document.getElementById("logout-link").addEventListener("click", (e) => {
   e.preventDefault();
-  isLoggedIn = false; // Update login status
+  isLoggedIn = false;
+  localStorage.removeItem("isLoggedIn"); // Clear login status
   updateAuthLinks();
   alert("Logged out successfully!");
+  window.location.href = "index.html";
 });
 
 // Initial check
 updateAuthLinks();
+
+
