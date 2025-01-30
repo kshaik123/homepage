@@ -20,8 +20,8 @@ document.getElementById("login").addEventListener("submit", (e) => {
   // Perform login validation (to be connected to backend later)
   if (email && password) {
     alert("Login successful!");
-    // Redirect to home page or dashboard
-    window.location.href = "index.html";
+    // Redirect to home page
+    window.location.href = "index.html"; // Redirect to the main page
   } else {
     alert("Please fill in all fields.");
   }
@@ -40,6 +40,8 @@ document.getElementById("register").addEventListener("submit", (e) => {
     // Switch to login form
     document.getElementById("register-form").style.display = "none";
     document.getElementById("login-form").style.display = "block";
+    // Optionally, redirect to the main page after registration
+    // window.location.href = "index.html";
   } else {
     alert("Please fill in all fields.");
   }
