@@ -88,3 +88,32 @@ function addToCart(productId) {
 
 // Initial render
 renderProducts();
+
+
+// Check if the user is logged in (dummy check for now)
+let isLoggedIn = false; // Replace with actual login status from backend
+
+// Update the navigation menu based on login status
+function updateAuthLinks() {
+  const loginLink = document.getElementById("login-link");
+  const logoutLink = document.getElementById("logout-link");
+
+  if (isLoggedIn) {
+    loginLink.style.display = "none";
+    logoutLink.style.display = "inline";
+  } else {
+    loginLink.style.display = "inline";
+    logoutLink.style.display = "none";
+  }
+}
+
+// Logout functionality
+document.getElementById("logout-link").addEventListener("click", (e) => {
+  e.preventDefault();
+  isLoggedIn = false; // Update login status
+  updateAuthLinks();
+  alert("Logged out successfully!");
+});
+
+// Initial check
+updateAuthLinks();
