@@ -60,18 +60,15 @@ const products = [
 function renderProducts(filteredProducts = products) {
   const productGrid = document.getElementById("product-grid");
   productGrid.innerHTML = ""; // Clear existing content
-
   filteredProducts.forEach((product) => {
     const productCard = document.createElement("div");
     productCard.className = "product-card";
-
     productCard.innerHTML = `
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p>$${product.price.toFixed(2)}</p>
       <button onclick="addToCart(${product.id})">Add to Cart</button>
     `;
-
     productGrid.appendChild(productCard);
   });
 }
@@ -86,21 +83,31 @@ function addToCart(productId) {
   }
 }
 
+// Search functionality
+function filterProducts() {
+  const searchInput = document.getElementById("search-input").value.toLowerCase();
+  const filteredProducts = products.filter((product) => 
+    product.name.toLowerCase().includes(searchInput)
+  );
+  renderProducts(filteredProducts);
+}
+
+// Event listener for search button
+document.getElementById("search-button").addEventListener("click", filterProducts);
+
+// Event listener for search input (real-time filtering)
+document.getElementById("search-input").addEventListener("input", filterProducts);
+
 // Initial render
 renderProducts();
 
-
 // Check if the user is logged in (dummy check for now)
-let isLoggedIn = false; // Replace with actual login status from backend
-
-// Check login status from localStorage
 let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
 // Update the navigation menu based on login status
 function updateAuthLinks() {
   const loginLink = document.getElementById("login-link");
   const logoutLink = document.getElementById("logout-link");
-
   if (isLoggedIn) {
     loginLink.style.display = "none";
     logoutLink.style.display = "inline";
@@ -122,5 +129,3 @@ document.getElementById("logout-link").addEventListener("click", (e) => {
 
 // Initial check
 updateAuthLinks();
-
-
