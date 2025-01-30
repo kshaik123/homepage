@@ -17,14 +17,24 @@ document.getElementById("login").addEventListener("submit", (e) => {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
 
-  // Perform login validation (to be connected to backend later)
   if (email && password) {
     alert("Login successful!");
+    // Save login status to localStorage
+    localStorage.setItem("isLoggedIn", "true");
     // Redirect to home page
-    window.location.href = "index.html"; // Redirect to the main page
+    window.location.href = "index.html";
   } else {
     alert("Please fill in all fields.");
   }
+});
+
+// Handle Logout
+document.getElementById("logout-link").addEventListener("click", (e) => {
+  e.preventDefault();
+  // Clear login status from localStorage
+  localStorage.removeItem("isLoggedIn");
+  alert("Logged out successfully!");
+  window.location.href = "index.html";
 });
 
 // Handle Register Form Submission
