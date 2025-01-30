@@ -99,10 +99,12 @@ header .search-bar button {
   margin-right: 10px;
 }
 
+
+
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr); /* 3 products per row */
+  gap: 20px; /* Space between products */
   padding: 20px;
 }
 
